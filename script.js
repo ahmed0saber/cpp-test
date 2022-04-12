@@ -1,4 +1,4 @@
-window.location.href = "/#home"
+window.location.href = "./#home"
 let score = 0, i = 0, id, checked = false
 let questions = [
     {
