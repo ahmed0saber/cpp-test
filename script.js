@@ -332,9 +332,9 @@ function nextQuestion(){
     document.getElementById(id).parentElement.classList.remove('correct')
     if(i==questions.length){
         if(score>=100){
-            window.location.href = "/#certificate"
+            window.location.href = "./#certificate"
         }else{
-            window.location.href = "/#fail"
+            window.location.href = "./#fail"
         }
     }else{
         newTurn()

@@ -138,6 +138,8 @@ main section a:active{
     color: #F8F9FA;
     border: 2px solid #007BFF;
     margin: 4px 0 0 0;
+    cursor: pointer;
+    outline: none;
 }
 #test button:active{
     background-color: #343A40;
