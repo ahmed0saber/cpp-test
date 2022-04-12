@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++ Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <section class="pages" id="cover"></section>
+
+        <section class="pages" id="home">
+            <h1>C++ Test</h1>
+            <p>This test covers Data Types, Variables, Console Output, User Input, Comments, Operators, Conditional Statements, Loops, Arrays and Functions.</p>
+            <p>If you are not ready, check <a style="color: #28A745" href="https://www.w3schools.com/cpp/default.asp" target="_blank">w3schools</a> or <a style="color: #007BFF" href="https://www.programiz.com/cpp-programming" target="_blank">programiz</a>, for some tutorials.</p>
+            <a class="startBtn" href="#test">Start the Test</a>
+        </section>
+
+        <section class="pages" id="test">
+            <div class="info">
+                <p>Question number <span id="num">1</span> out of <span id="numOfQ">20</span></p>
+                <p id="score">Score : 0</p>
+            </div>
+            <div>
+                <p id="question">What is your name ?!</p>
+                <pre id="code"></pre>
+                <p class="answer-container">
+                    <label>
+                        <input name="ans" type="radio" class="answer" id="answer0"/>
+                        <span for="answer0" id="choice1">Ahmed</span>
+                    </label>
+                </p>
+                <p class="answer-container">
+                    <label>
+                        <input name="ans" type="radio" class="answer" id="answer1"/>
+                        <span for="answer1" id="choice2">Ahmed</span>
+                    </label>
+                </p>
+                <p class="answer-container">
+                    <label>
+                        <input name="ans" type="radio" class="answer" id="answer2"/>
+                        <span for="answer2" id="choice3">Ahmed</span>
+                    </label>
+                </p>
+                <p class="answer-container">
+                    <label>
+                        <input name="ans" type="radio" class="answer" id="answer3"/>
+                        <span for="answer3" id="choice4">Ahmed</span>
+                    </label>
+                </p>
+                <div class="btns">
+                    <button onclick="checkAnswer()">Check</button>
+                    <button onclick="nextQuestion()">Next</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="pages" id="certificate">
+            <h1>Congratulations! You have successfully passed the test..</h1>
+            <p>Enter your full name to get your certificate.</p>
+            <input type="text" id="name" placeholder="Ex: Ahmed Saber Fathy" autocomplete="off" required/>
+            <button id="submitBtn">Get Certificate</button>
+        </section>
+
+        <section class="pages" id="fail">
+            <h1>Unfortunately, You haven't passed the test..</h1>
+        </section>
+    </main>
+</body>
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+<script src="filesaver.js"></script>
+<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.all.min.js"></script>
+<script src="./script.js"></script>
+</html>
