@@ -115,6 +115,7 @@ main section a:active{
     justify-content: flex-start;
     align-items: center;
     margin: 4px 0;
+    cursor: pointer;
 }
 .answer-container label input{
     margin: 0 10px 0 0;
