@@ -130,7 +130,7 @@ main section a:active{
     align-items: center;
 }
 #test button{
-    width: calc(50% - 2px);
+    width: calc(100% - 0px);
     padding: 10px;
     font-size: 17px;
     border: none;
@@ -145,12 +145,14 @@ main section a:active{
     background-color: #343A40;
     border: 2px solid #343A40;
 }
-#test button:nth-of-type(2){
+#test .btns button{
+    width: calc(50% - 2px);
     background-color: #0000;
     color: #007BFF;
-}
-#test button:nth-of-type(2):active{
-    background-color: #007BFF;
-    color: #F8F9FA;
     border: 2px solid #007BFF;
+}
+#test .btns button:active{
+    background-color: #007BFF;
+    border: 2px solid #007BFF;
+    color: #F8F9FA;
 }

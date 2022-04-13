@@ -1,5 +1,5 @@
 window.location.href = "./#home"
-let score = 0, i = 0, id, checked = false
+let score = 0, i = 0, j = 0, id, checked = false, valid, answers = []
 let questions = [
     {
         question: "Complete the following code to output 'Hello World!'",
@@ -282,8 +282,10 @@ document.getElementById("numOfQ").textContent = questions.length
 newTurn()
 
 function newTurn(){
-    for(let x=0; x<4; x++){
-        document.getElementById("answer"+x).checked=false
+    if(i==j){
+        for(let x=0; x<4; x++){
+            document.getElementById("answer"+x).checked=false
+        }
     }
     document.getElementById("question").textContent = questions[i].question
     document.getElementById("code").textContent = questions[i].code
@@ -292,13 +294,36 @@ function newTurn(){
     document.getElementById("choice3").textContent = questions[i].answers[2]
     document.getElementById("choice4").textContent = questions[i].answers[3]
     document.getElementById("num").textContent = i+1
-    for(let x=0; x<4; x++){
-        document.getElementById("answer"+x).disabled = false
+    if(i == j){
+        for(let x=0; x<4; x++){
+            document.getElementById("answer"+x).disabled = false
+        }
     }
 }
 
 function checkAnswer(){
-    if(checked){
+    if(checked || i < j){
+        Swal.fire(
+            'Already answered',
+            'Press Next',
+            'info'
+        )
+        return
+    }
+    valid = false
+    for(let x=0; x<4; x++){
+        if(document.getElementById("answer"+x).checked){
+            valid = true
+            answers.push(x)
+            break
+        }
+    }
+    if(!valid){
+        Swal.fire(
+            'Not answered',
+            'Choose an answer first',
+            'info'
+        )
         return
     }
     id = "answer" + questions[i].correctAnswer
@@ -322,14 +347,38 @@ function checkAnswer(){
         document.getElementById("answer"+x).disabled = true
     }
     i++
+    if(i = j+1){
+        j++
+    }
     checked = true
 }
 
 function nextQuestion(){
-    if(!checked){
+    if(!checked && !(i<j)){
+        Swal.fire(
+            'Answer first',
+            'You can\'t go next until you answer the question and check for the correct answer',
+            'info'
+        )
         return
+    }else if(i<j){
+        for(let k=0; k<4; k++){
+            id = "answer" + k
+            document.getElementById(id).parentElement.classList.remove('correct')
+        }
+        i++
+        if(i<j){
+            id = "answer" + questions[i].correctAnswer
+            document.getElementById(id).parentElement.classList.add('correct')
+            for(let x=0; x<4; x++){
+                document.getElementById("answer"+x).checked=false
+            }
+            id = "answer" + answers[i]
+            document.getElementById(id).checked = true
+        }
+    }else{
+        document.getElementById(id).parentElement.classList.remove('correct')
     }
-    document.getElementById(id).parentElement.classList.remove('correct')
     if(i==questions.length){
         if(score>=100){
             window.location.href = "./#certificate"
@@ -340,4 +389,34 @@ function nextQuestion(){
         newTurn()
     }
     checked = false
+}
+
+function backQuestion(){
+    if(i<=0){
+        Swal.fire(
+            'First question',
+            'You can\'t go back',
+            'info'
+        )
+    }else{
+        if(checked && i>1){
+            i--
+        }
+        i--
+        for(let i=0; i<4; i++){
+            id = "answer" + i
+            document.getElementById(id).parentElement.classList.remove('correct')
+        }
+        for(let x=0; x<4; x++){
+            document.getElementById("answer"+x).checked=false
+        }
+        id = "answer" + answers[i]
+        document.getElementById(id).checked = true
+        id = "answer" + questions[i].correctAnswer
+        document.getElementById(id).parentElement.classList.add('correct')
+        newTurn()
+        for(let x=0; x<4; x++){
+            document.getElementById("answer"+x).disabled = true
+        }
+    }
 }
