@@ -18,13 +18,16 @@
             <h1>C++ Test</h1>
             <p>This test covers Data Types, Variables, Console Output, User Input, Comments, Operators, Conditional Statements, Loops, Arrays and Functions.</p>
             <p>If you are not ready, check <a style="color: #28A745" href="https://www.w3schools.com/cpp/default.asp" target="_blank">w3schools</a> or <a style="color: #007BFF" href="https://www.programiz.com/cpp-programming" target="_blank">programiz</a>, for some tutorials.</p>
-            <a class="startBtn" href="#test">Start the Test</a>
+            <a class="startBtn" onclick="toTest()">Start the Test</a>
         </section>
 
         <section class="pages" id="test">
             <div class="info">
                 <p>Question number <span id="num">1</span> out of <span id="numOfQ">20</span></p>
-                <p id="score">Score : 0</p>
+                <div class="row">
+                    <p id="score">Score : 0</p>
+                    <span id="timer">60</span>
+                </div>
             </div>
             <div>
                 <p id="question">What is your name ?!</p>

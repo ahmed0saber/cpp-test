@@ -1,5 +1,5 @@
 window.location.href = "./#home"
-let score = 0, i = 0, j = 0, id, checked = false, valid, answers = []
+let score = 0, i = 0, j = 0, id, checked = false, valid, answers = [], time, myTimeout, counting
 let questions = [
     {
         question: "Complete the following code to output 'Hello World!'",
@@ -326,6 +326,8 @@ function checkAnswer(){
         )
         return
     }
+    clearTimeout(myTimeout)
+    counting = false
     id = "answer" + questions[i].correctAnswer
     if(document.getElementById(id).checked){
         Swal.fire(
@@ -333,7 +335,11 @@ function checkAnswer(){
             '',
             'success'
         )
-        score += 5
+        if(time>0){
+            score += 5
+        }else{
+            score += 2
+        }
         document.getElementById("score").textContent = "Score : "+score
     }else{
         Swal.fire(
@@ -375,9 +381,12 @@ function nextQuestion(){
             }
             id = "answer" + answers[i]
             document.getElementById(id).checked = true
+        }else{
+            beginTimer()
         }
     }else{
         document.getElementById(id).parentElement.classList.remove('correct')
+        beginTimer()
     }
     if(i==questions.length){
         if(score>=100){
@@ -398,7 +407,15 @@ function backQuestion(){
             'You can\'t go back',
             'info'
         )
+    }else if(counting){
+        Swal.fire(
+            'Answer first',
+            'You can\'t go back while timer is running',
+            'info'
+        )
     }else{
+        clearTimeout(myTimeout)
+        counting = false
         if(checked && i>1){
             i--
         }
@@ -419,4 +436,28 @@ function backQuestion(){
             document.getElementById("answer"+x).disabled = true
         }
     }
+}
+
+function toTest(){
+    window.location.href = "./#test"
+    beginTimer()
+}
+
+function beginTimer(){
+    counting = true
+    time = 60
+    document.getElementById("timer").textContent = time
+    myTimeout = setInterval(function(){
+        time--
+        document.getElementById("timer").textContent = time
+        if(time == 0){
+            clearTimeout(myTimeout)
+            counting = false
+            Swal.fire(
+                'Time out',
+                'If you answer the question correctly, you will gain only 2 points instead of 5',
+                'info'
+            )
+        }
+    }, 1000)
 }
